@@ -1,3 +1,7 @@
+/* two pointer
+time : O(n), space: O(1)
+*/  
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -8,9 +12,7 @@ public:
                 l = r;
             }
             int cur_profit = prices[r] - prices[l];
-            if (cur_profit > max_profit){
-                max_profit = cur_profit;
-            }
+            max_profit = max(max_profit, cur_profit);
         }
         return max_profit;
     }
