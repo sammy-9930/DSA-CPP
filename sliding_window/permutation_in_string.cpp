@@ -1,4 +1,29 @@
 /*
+Brute force 
+time: O(n^3logn)
+space: O(n)
+*/
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        sort(s1.begin(), s1.end());
+
+        for (int i = 0; i < s2.size(); i++){
+            for(int j = i; j < s2.size(); j++){
+                string subStr = s2.substr(i, j - i + 1);
+                sort(subStr.begin(), subStr.end());
+
+                if (subStr == s1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+
+/*
 Sliding window 
 time: o(n + m)
 space: o(1) atmost 26 char 
