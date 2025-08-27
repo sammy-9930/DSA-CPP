@@ -1,9 +1,17 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+/*
+time : O(n^2) - List is already sorted 
+       O(n^2) - worst case  [n, n-1, n-2 ... 2 1] 
+       O(nlogn) - best case 
+
+       Best case - partitioning done in the center - o(nlogn)
+       worst case - partitioning done at any end - o(n^2) in terms of element arrangement 
+*/
 
 int partition(vector<int>& arr, int low, int high){
-    int i = low + 1;
+    int i = low + 1; // or i = low
     int j = high;
     int pivot = arr[low];
 
