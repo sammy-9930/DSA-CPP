@@ -1,3 +1,27 @@
+/*
+Brute force
+time: O(n^2)
+space: O(1)
+*/
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int max_area = 0;
+        for(int i = 0; i < height.size(); i++){
+            for(int j = i+1; j < height.size(); j++){
+                int cur_area = (j - i) * (min(height[i], height[j]));
+                max_area = max(max_area, cur_area);
+            }
+        }
+        return max_area;
+    }
+};
+
+/*
+two pointer approach 
+time: O(n)
+space: O(1)
+*/
 class Solution {
 public:
     int maxArea(vector<int>& height) {
