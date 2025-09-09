@@ -15,7 +15,7 @@ int partition(vector<int>& arr, int low, int high){
     int j = high;
     int pivot = arr[low];
 
-    while (i <= j){
+    while (i < j){
         while(i <= high && arr[i] <= pivot){
             i++;
         }
@@ -31,6 +31,7 @@ int partition(vector<int>& arr, int low, int high){
 }
 
 void quicksort(vector<int>& arr, int low, int high){
+    // process array with more than 1 element
     if (low < high){
         int pi = partition(arr, low, high);
         quicksort(arr, low, pi-1);
@@ -40,6 +41,60 @@ void quicksort(vector<int>& arr, int low, int high){
 
 int main(){
     vector<int> arr = {4, 6, 2, 5, 7, 9, 1, 3};
+    int n = arr.size();
+    cout << "Before sorting" << endl;
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    quicksort(arr, 0, n-1);
+
+    cout << "After sorting" << endl;
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+
+// using last element as pivot
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int partition(vector<int>& arr, int low, int high){
+    int pivot = arr[high];
+    int i = low, j = high - 1;
+
+    while (i <= j){
+        while(i <= j && arr[i] <= pivot){
+            i++;
+        }
+        while(i <= j && arr[j] > pivot){
+            j--;
+        }
+        if (i < j){
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[high], arr[i]);
+    return i;
+}
+
+void quicksort(vector<int>& arr, int low, int high){
+    // process array with more than 1 element
+    if (low < high){
+        int pi = partition(arr, low, high);
+        quicksort(arr, low, pi-1);
+        quicksort(arr, pi+1, high);
+    }
+}
+
+int main(){
+    vector<int> arr = {50, 60, 70, 80, 40, 30, 20};
     int n = arr.size();
     cout << "Before sorting" << endl;
     for(int i = 0; i < n; i++){
