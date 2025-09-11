@@ -1,0 +1,36 @@
+/*
+Select a position and find an element for that position.
+*/
+
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+void selection_sort(vector<int>& a){
+    for(int i = 0; i < a.size(); i++){
+        int k = i;
+        int cur_min = INT_MAX;
+        for(int j = i; j < a.size(); j++){
+            if (a[j] < cur_min){
+                cur_min = a[j];
+                k = j;
+            }
+        }
+        swap(a[i], a[k]);
+    }
+}
+
+int main(){
+    vector<int> a = {8, 6, 3, 2, 5, 4};
+    cout << "Before sorting\n";
+    for (auto number: a){
+        cout << number << " ";
+    }
+    selection_sort(a);
+    cout << "\nAfter sorting\n";
+    for (auto number: a){
+        cout << number << " ";
+    }
+}
