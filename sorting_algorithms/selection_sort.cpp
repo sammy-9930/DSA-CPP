@@ -1,5 +1,6 @@
 /*
 Select a position and find an element for that position.
+For n elements, n-1 swaps, so O(N)
 */
 
 #include <iostream>
@@ -9,12 +10,10 @@ Select a position and find an element for that position.
 using namespace std;
 
 void selection_sort(vector<int>& a){
-    for(int i = 0; i < a.size(); i++){
+    for(int i = 0; i < a.size() - 1 ; i++){
         int k = i;
-        int cur_min = INT_MAX;
         for(int j = i; j < a.size(); j++){
-            if (a[j] < cur_min){
-                cur_min = a[j];
+            if (a[j] < a[k]){
                 k = j;
             }
         }
