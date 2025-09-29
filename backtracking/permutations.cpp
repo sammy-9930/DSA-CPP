@@ -1,34 +1,28 @@
 // with extra space 
 class Solution {
 public:
-    void helper(vector<int>& nums, vector<vector<int>>& result, vector<int> curr, vector<bool>& visited){
-        // base cond 
+    void helper(vector<int>& nums, vector<vector<int>>& result, int idx, vector<int> curr){
         if (curr.size() == nums.size()){
             result.push_back(curr);
             return;
         }
 
         for(int i = 0; i < nums.size(); i++){
-            if (visited[i])
-                continue; 
-            visited[i] = true; 
+            if (find(curr.begin(), curr.end(), nums[i]) != curr.end())
+                continue;
             curr.push_back(nums[i]);
-            
-            helper(nums, result, curr, visited);
-
+            helper(nums, result, idx+1, curr);
             curr.pop_back();
-            visited[i] = false;
         }
-
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> result;
         vector<int> curr;
-        vector<bool> visited(nums.size(), false);
-        helper(nums, result, curr, visited);
+        helper(nums, result, 0, curr);
         return result;
     }
 };
+
 
 // without extra space - preferred
 class Solution {

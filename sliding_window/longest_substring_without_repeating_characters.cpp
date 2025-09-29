@@ -2,8 +2,24 @@
 Brute force 
 time: O(n * m)
 space: O(m)
-
 */
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.size();
+        int maxLen = 0;
+
+        for(int i = 0; i < n; i++) {
+            for(int j = i; j < n; j++){
+                string sub = s.substr(i, j - i + 1);
+                unordered_set<char> st(sub.begin(), sub.end());
+                if (st.size() == sub.size())
+                    maxLen = max(maxLen, j - i + 1);
+            }
+        }
+        return maxLen;
+    }
+};
 
 /*
 Optimized
