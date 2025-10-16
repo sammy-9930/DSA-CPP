@@ -22,6 +22,39 @@ public:
     }
 };
 
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        if (s1.length() > s2.length())
+            return false;
+
+        unordered_map<char, int> countS1;
+        unordered_map<char, int> countS2;
+
+        for(auto c : s1){
+            countS1[c]++;
+        }
+
+        int l = 0;
+        for(int r = 0; r < s2.length(); r++){
+            countS2[s2[r]]++;
+
+            while ((r - l + 1) > s1.size()){
+                countS2[s2[l]]--;
+                if (countS2[s2[l]] == 0)
+                    countS2.erase(s2[l]);
+                l++;
+            }
+
+            if ((r - l + 1) == s1.size()){
+                if (countS1 == countS2)
+                    return true;
+            } 
+        }
+        return false;
+    }
+};
+
 
 /*
 Sliding window 
