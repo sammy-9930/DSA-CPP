@@ -1,8 +1,6 @@
-# DSA-CPP
-Solving Leetcode problems 
-
 # LeetCode Solutions
 
-| # | Problem | Link | Language |
+| # | Problem | Link |
 |---:|---|---|---|
-| 144 | Binary Tree Preorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-preorder-traversal/) | C++ |
+| 144 | Binary Tree Preorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-preorder-traversal/) | 
+| 94 | Binary Tree Inorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) |
