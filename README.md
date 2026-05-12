@@ -4,5 +4,9 @@
 |---:|---|---|---|
 | 144 | Binary Tree Preorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-preorder-traversal/) | Trees | 
 | 94 | Binary Tree Inorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) | Trees | 
-| 104 | Maximum Depth of Binary Tree | [Problem](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/) | Trees |
+| 145 | Binary Tree Postorder Traversal | [Problem](https://leetcode.com/problems/binary-tree-postorder-traversal/description/) | Trees |
 | 102 | Binary Tree Level Order Traversal | [Problem](https://leetcode.com/problems/binary-tree-level-order-traversal/description/) | Trees | 
+| 104 | Maximum Depth of Binary Tree | [Problem](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/) | Trees |
+| 113 | Path Sum II | [Problem](https://leetcode.com/problems/path-sum-ii/description/) | Trees | 
+
+ 
