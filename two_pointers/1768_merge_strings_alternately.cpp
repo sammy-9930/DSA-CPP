@@ -24,19 +24,25 @@ public:
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
-        string res = "";
+        string res;
         int m = word1.size();
         int n = word2.size();
         int i = 0, j = 0;
-        while (i < m || j < n){
-            if (i < m){
-                res += word1[i];
-                i++;
-            }
-            if (j < n){
-                res += word2[j];
-                j++;
-            }
+        while (i < m && j < n){
+            res += word1[i];
+            i += 1;
+            res += word2[j];
+            j += 1;
+        }
+
+        if (i < m){
+            string cur = word1.substr(i);
+            res += cur;
+        }
+        
+        if (j < n){
+            string cur = word2.substr(j);
+            res += cur;
         }
         return res;
     }
