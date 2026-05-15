@@ -13,9 +13,11 @@
 
 ## Two Pointers
 
-- [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+- [344. Reverse String](https://leetcode.com/problems/reverse-string/)
 - [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
-- [167. Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- [680. Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/description/)
+- [1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately/)
+- [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
 ---
 
