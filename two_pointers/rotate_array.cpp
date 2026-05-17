@@ -19,17 +19,20 @@ public:
 };
 
 
-// O(n) time, O(n) space - right rotate 
+/*
+time complexity: o(n)
+space complexity: o(n) - extra array 
+*/ 
 
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        vector<int> temp(nums.size());
         int n = nums.size();
-        for (int i = 0; i < nums.size(); i++){
-            temp[(i + k) % n] = nums[i];
+        vector<int> res(n ,0);
+        for (int i = 0; i < n; i++){
+            res[(i + k) % n] = nums[i];
         }
-        nums = temp;
+        nums = res;
     }
 };
 
