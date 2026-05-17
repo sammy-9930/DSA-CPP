@@ -17,7 +17,7 @@ public:
 
 /*
 alternate more intuitive solution 
-time complexity: o(n) n - number of people 
+time complexity: o(nlogn) n - number of people 
 space complexity: o(1)
 */
 class Solution {
