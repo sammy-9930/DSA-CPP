@@ -9,6 +9,11 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+/*
+time complexity: o(h) h - height of the BST
+space complexity: o(h) - recursive call stack 
+*/
 class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
