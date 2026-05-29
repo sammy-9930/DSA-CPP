@@ -1,4 +1,6 @@
 // Brute force - sorting 
+// time complexity: o(n * nlogn) = o(n^2 log n)
+// space complexity: o(1) - done in place 
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
@@ -19,6 +21,8 @@ public:
 
 
 // optimize - priority queue 
+// time complexity: o(n) + o(nlogn) - heapify + actual operation 
+// space complexity: o(n) - copy all elements into max heap 
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
