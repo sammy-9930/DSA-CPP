@@ -4,14 +4,16 @@ public:
     int lastStoneWeight(vector<int>& stones) {
         while (stones.size() > 1){
             sort(stones.begin(), stones.end());
-            int high = stones.back();
+            int y = stones.back();
             stones.pop_back();
-            int sec_high = stones.back();
+            int x = stones.back();
             stones.pop_back();
-            if (high > sec_high)
-                stones.push_back(high - sec_high);
+            if (y != x){
+                y = y - x;
+                stones.push_back(y);
+            }       
         }
-        return stones.empty() ? 0 : stones[0];
+        return (stones.size() == 0) ? 0 : stones[0];
     }
 };
 
