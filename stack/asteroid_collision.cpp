@@ -1,27 +1,31 @@
+/*
+using vector as a stack
+time complexity : O(n)
+space complexity: O(n)
+*/
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
-        vector<int> stack;
-        for (int i = 0; i < asteroids.size(); i++){
-            bool alive = true;
-            while (!stack.empty() && alive && asteroids[i] < 0 && stack.back() > 0){
-                if (-asteroids[i] == stack.back()){
-                    // both explode 
-                    stack.pop_back();
-                    alive = false;
+        vector<int> res;
+        for(int& a: asteroids){
+            while (!res.empty() &&  res.back() > 0 && a < 0){
+                int diff = a + res.back();
+                if (diff == 0){
+                    res.pop_back();
+                    a = 0;
+                    break;
                 }
-                else if (stack.back() <  -asteroids[i]){
-                    // top explodes 
-                    stack.pop_back();
+                else if (diff < 0){
+                    res.pop_back();
                 }
                 else{
-                    // top is bigger, current dies 
-                    alive = false;
+                    a = 0;
+                    break;
                 }
             }
-            if (alive)
-                stack.push_back(asteroids[i]);
+            if (a!= 0)
+                res.push_back(a);
         }
-        return stack;
+        return res;
     }
 };
