@@ -1,5 +1,4 @@
-/*
-optimal solution
+/* 
 time: O(m+n) for each encode and decode function calls
 space: O(m+n) for each encode and decode function calls
 */
