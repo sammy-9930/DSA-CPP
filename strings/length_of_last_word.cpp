@@ -16,27 +16,45 @@ public:
     }
 };
 
-// starting from beginning of string 
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        int i = 0;
-        int count = 0;
-        while (i < s.size()){
-            if (s[i] == ' '){
-                while (i < s.size() && s[i] == ' '){
-                    i += 1;
-                }
-                if (i == s.size()){
-                    return count;
-                }
+        int i = s.size()-1;
+        int count;
+        while(i >= 0){
+            if (s[i] != ' '){
                 count = 0;
+                while (i >= 0 && s[i] != ' '){
+                    count++;
+                    i--;
+                }
+                break;
             }
-            else{
-                count += 1;
-                i += 1;
-            }
+            i--;
         }
         return count;
+    }
+};
+
+// starting from beginning of string
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int word_length = 0;
+        int i = 0;
+        while (i < s.size()){
+            if (s[i] != ' ' && (i == 0 || s[i-1] == ' ')){
+                int count = 0;
+                while(i < s.size() && s[i] != ' '){
+                    count++;
+                    i++;
+                }
+                word_length = count;
+            }
+            else{
+                i++;
+            }
+        }
+        return word_length;
     }
 };
