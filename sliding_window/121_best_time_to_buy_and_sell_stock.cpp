@@ -1,5 +1,7 @@
 /*
 Brute force 
+Time complexity: O(n^2)
+Space complexity: O(1)
 */
 class Solution {
 public:
@@ -16,8 +18,10 @@ public:
     }
 };
 
-/* two pointer
-time : O(n), space: O(1)
+/* 
+two pointer
+time complexity : O(n)
+space complexity : O(1)
 */  
 
 class Solution {
