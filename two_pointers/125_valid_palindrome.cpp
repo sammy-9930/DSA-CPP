@@ -1,28 +1,68 @@
+/*
+Brute force
+Time complexity: O(n)
+Space complexity: O(n)
+*/
+
 class Solution {
 public:
-    bool isValid(char c){
-        return ('a' <= c && c <= 'z') ||
-                ('A' <= c && c <= 'Z') || 
-                ('0' <= c && c <= '9');
+    bool isAlphaNum(char c){
+        if (c >= 'a' && c <= 'z' ||
+            c >= 'A' && c <= 'Z' ||
+            c >= '0' && c <= '9'){
+                return true;
+        }
+        return false;
     }
+
     bool isPalindrome(string s) {
-        int l = 0, r = s.size()-1;
+        string sNew = "";
+        for(char c: s){
+            if (isAlphaNum(c)){
+                sNew += tolower(c);
+            }
+        }
+        string sRev(sNew.rbegin(), sNew.rend());
+        return sNew == sRev;
+    }
+};
+
+
+/*
+Two pointers
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+class Solution {
+public:
+    bool isAlphaNum(char c){
+        if (c >= 'a' && c <= 'z' ||
+            c >= 'A' && c <= 'Z' ||
+            c >= '0' && c <= '9'){
+                return true;
+        }
+        return false;
+    }
+
+    bool isPalindrome(string s) {
+        if (s.empty())
+            return true;
+        int l = 0;
+        int r = s.size()-1;
         while (l < r){
-            if (!isValid(s[l])){
-                l += 1;
-                continue;
+            if (isAlphaNum(s[l]) && isAlphaNum(s[r])){
+                if (tolower(s[l]) != tolower(s[r])){
+                    return false;
+                }
+                l++;
+                r--;
             }
-
-            if (!isValid(s[r])){
-                r -= 1;
-                continue;
+            else if (!isAlphaNum(s[l])){
+                l++;
             }
-
-            if (tolower(s[l]) != tolower(s[r]))
-                return false;
-            
-            l += 1;
-            r -= 1;
+            else if (!isAlphaNum(s[r])){
+                r--;
+            }
         }
         return true;
     }
