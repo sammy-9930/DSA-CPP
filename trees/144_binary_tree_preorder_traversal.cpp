@@ -1,3 +1,8 @@
+/*
+Recursive solution
+Time complexity: O(n)
+Space complexity: O(n) for recursive stack, O(n) for output array
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -10,14 +15,16 @@
  * };
  */
 
-/*Solution 1: recursive */
 class Solution {
 public:
     void helper(TreeNode* root, vector<int>& res){
         if (root == NULL) return;
+        
         res.push_back(root->val);
+        
         if (root->left)
             helper(root->left, res);
+        
         if (root->right)
             helper(root->right, res);
 
@@ -31,7 +38,11 @@ public:
 };
 
 
-/*Solution 2: iterative */
+/*
+Iterative DFS
+Time complexity: O(n)
+Space complexity: O(n) for recursive stack, O(n) for output array
+*/
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
