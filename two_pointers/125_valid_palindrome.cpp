@@ -36,32 +36,32 @@ Space complexity: O(1)
 class Solution {
 public:
     bool isAlphaNum(char c){
-        if (c >= 'a' && c <= 'z' ||
-            c >= 'A' && c <= 'Z' ||
-            c >= '0' && c <= '9'){
-                return true;
-        }
+        if((c >= 'a' && c <= 'z') ||
+        (c >= 'A' && c <= 'Z') ||
+        (c >= '0' && c <= '9'))
+            return true;
         return false;
     }
 
     bool isPalindrome(string s) {
-        if (s.empty())
-            return true;
-        int l = 0;
-        int r = s.size()-1;
-        while (l < r){
-            if (isAlphaNum(s[l]) && isAlphaNum(s[r])){
-                if (tolower(s[l]) != tolower(s[r])){
-                    return false;
+        int l = 0, r = s.size()-1;
+        while(l < r){
+            if(isAlphaNum(s[l])){
+                if(isAlphaNum(s[r])){
+                    if(tolower(s[l]) == tolower(s[r])){
+                        l++;
+                        r--;
+                    }
+                    else{
+                        return false;
+                    }
                 }
-                l++;
-                r--;
+                else{
+                    r--;
+                }
             }
-            else if (!isAlphaNum(s[l])){
+            else{
                 l++;
-            }
-            else if (!isAlphaNum(s[r])){
-                r--;
             }
         }
         return true;
