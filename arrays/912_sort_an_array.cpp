@@ -5,34 +5,45 @@ Space complexity: O(n)
 */
 class Solution {
 public:
-    void merge(vector<int>& arr, int low, int mid, int high){
-        vector<int> temp;
-        int left = low, right = mid + 1;
-        while (left <= mid && right <= high){
-            if (arr[left] <= arr[right])
-                temp.push_back(arr[left++]);
-            else 
-                temp.push_back(arr[right++]);
+    void merge(int low, int mid, int high, vector<int>& nums, vector<int>& temp){
+        int i = low, j = mid+1;
+        int k = low;
+        while(i <= mid && j <= high){
+            if(nums[i] <= nums[j]){
+                temp[k++] = nums[i++];
+            }
+            else{
+                temp[k++] = nums[j++];
+            }
         }
-        while(left <= mid)
-            temp.push_back(arr[left++]);
-        while(right <= high)
-            temp.push_back(arr[right++]);
 
-        for(int i = low; i <= high; i++)
-            arr[i] = temp[i - low];
+        while(i <= mid){
+            temp[k++] = nums[i++];
+        }
+
+        while(j <= high){
+            temp[k++] = nums[j++];
+        }
+
+        for(int i = low; i <= high; i++){
+            nums[i] = temp[i];
+        }
     }
-    void mergeSort(vector<int>& nums, int low, int high){
-        if (low >= high)
+
+    void mergeSort(int low, int high, vector<int>& nums, vector<int>& temp){
+        if(low >= high){
             return;
+        }
         int mid = (low + high)/2;
-        mergeSort(nums, low, mid);
-        mergeSort(nums, mid+1, high);
-        merge(nums, low, mid, high);
+        mergeSort(low, mid, nums, temp);
+        mergeSort(mid+1, high, nums, temp);
+        merge(low, mid, high, nums, temp);
     }
+
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        mergeSort(nums, 0, n-1);
+        vector<int> temp(n, -1);
+        mergeSort(0, n-1, nums, temp);
         return nums;
     }
 };
