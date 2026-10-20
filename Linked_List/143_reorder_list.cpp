@@ -42,34 +42,35 @@ Space complexity: O(1)
 class Solution {
 public:
     void reorderList(ListNode* head) {
+        ListNode* fast = head;
         ListNode* slow = head;
-        ListNode* fast = head->next; 
-        while(fast && fast->next){
+
+        while(fast->next && fast->next->next){
             slow = slow->next;
             fast = fast->next->next;
         }
 
-        ListNode* tmp1 = nullptr;
-        ListNode* tmp2 = nullptr;
-        ListNode* tmp = slow->next;
+        ListNode* p = slow->next;
         slow->next = nullptr;
-
-        while(tmp){
-            tmp2 = tmp1;
-            tmp1 = tmp;
-            tmp = tmp->next;
-            tmp1->next = tmp2;
+        ListNode* q = nullptr;
+        ListNode* r = nullptr;
+        while(p != nullptr){
+            r = q;
+            q = p;
+            p = p->next;
+            q->next = r;
         }
 
-        ListNode* first = head;
-        ListNode* second = tmp1;
-        while(second != nullptr){
-            ListNode* tmp3 = first->next;
-            ListNode* tmp4 = second->next;
-            first->next = second;
-            second->next = tmp3;
-            first = tmp3;
-            second = tmp4;
+        ListNode* a = head;
+        ListNode* b = q;
+        while(a != nullptr && b != nullptr){
+            ListNode* c = a->next;
+            a->next = b;
+            a = c;
+            ListNode* d = b->next;
+            b->next = a;
+            b = d;
         }
+
     }
 };
