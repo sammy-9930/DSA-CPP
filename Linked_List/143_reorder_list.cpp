@@ -6,9 +6,6 @@ Space complexity: O(n)
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if (head == nullptr)
-            return; 
-
         vector<ListNode*> nodes;
         ListNode* cur = head;
 
@@ -17,19 +14,22 @@ public:
             cur = cur->next;
         }
 
-        int i=0;
-        int j=nodes.size()-1;
+        int left = 0;
+        int right = nodes.size() - 1;
 
-        while (i < j){
-            nodes[i]->next = nodes[j];
-            i++; 
+        while(left < right){
+            nodes[left]->next = nodes[right];
+            left++;
 
-            if(i >= j) break;
+            if(left == right){
+                break;
+            }
 
-            nodes[j]->next = nodes[i];
-            j--;
+            nodes[right]->next = nodes[left];
+            right--;
         }
-        nodes[i]->next = nullptr;
+        nodes[left]->next = nullptr;
+
     }
 };
 
