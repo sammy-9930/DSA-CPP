@@ -6,18 +6,21 @@ space: O(m)
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int n = s.size();
-        int maxLen = 0;
+        int maxCount = 0;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = i; j < n; j++){
-                string sub = s.substr(i, j - i + 1);
-                unordered_set<char> st(sub.begin(), sub.end());
-                if (st.size() == sub.size())
-                    maxLen = max(maxLen, j - i + 1);
+        for (int i = 0; i < s.size(); i++) {
+            unordered_set<char> seen;
+
+            for (int j = i; j < s.size(); j++) {
+                if (seen.count(s[j])) {
+                    break;
+                }
+                seen.insert(s[j]);
+                maxCount = max(maxCount, j - i + 1);
             }
         }
-        return maxLen;
+
+        return maxCount;
     }
 };
 
