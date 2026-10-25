@@ -27,14 +27,16 @@ Space complexity: O(1)
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int maxSum = nums[0];
+        if(nums.size() == 1) return nums[0];
+        
+        int maxSum = INT_MIN;
         int curSum = 0;
-        for(int i = 0; i < nums.size(); i++){
-            if (curSum < 0){
+        for(int number : nums){
+            curSum += number;
+            maxSum = max(curSum, maxSum);
+            if(curSum < 0){
                 curSum = 0;
             }
-            curSum += nums[i];
-            maxSum = max(curSum, maxSum);
         }
         return maxSum;
     }
