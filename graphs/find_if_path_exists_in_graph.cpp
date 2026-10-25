@@ -37,7 +37,7 @@ public:
 
 /*
 DFS - adjacency matrix 
-time: O(v^2) , space: O(v^2) matrix + o(v) queue + o(v) visited
+time: O(v^2) , space: O(v^2) matrix + o(v) stack + o(v) visited
 */
 class Solution {
 public:
