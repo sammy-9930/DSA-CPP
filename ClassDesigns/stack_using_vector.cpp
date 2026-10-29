@@ -21,7 +21,7 @@ class Stack{
         
         T& top(){
             if(isEmpty())
-                throw runtime_error("No elements found in stack");
+                throw underflow_error("Stack is empty");
             return data[data.size()-1];
         }
         
@@ -29,7 +29,7 @@ class Stack{
             return data.empty();
         }
         
-        int size(){
+        size_t size(){
             return data.size();
         }
         
