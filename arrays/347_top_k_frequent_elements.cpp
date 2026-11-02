@@ -1,35 +1,36 @@
-// max heap
-// time: O(nlogn)
+/*
+Brute force - sorting
+Time complexity : O(nlogn)
+Space complexity : O(n)
+*/
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> seen;
         vector<int> res;
-        priority_queue<pair<int, int>> maxHeap;
-
-        // store the element and its frequency 
-        for(int i = 0; i < nums.size(); i++){
-            seen[nums[i]] += 1;
+        unordered_map<int, int> frequency;
+        for(int number : nums){
+            frequency[number]++;
         }
 
-        // push (freq, value) into the maxHeap
-        for(auto itr = seen.begin(); itr != seen.end(); itr++){
-            maxHeap.push({itr->second, itr->first});
+        vector<pair<int, int>> arr;
+        for(auto element : frequency){
+            arr.push_back({element.second, element.first});
         }
 
-        // extract elements into res 
-        while (k > 0){
-            auto var = maxHeap.top();
-            maxHeap.pop();
-            res.push_back(var.second);
-            k--;
-        }
+        sort(arr.rbegin(), arr.rend());
 
+        for(int i = 0; i < k; i++){
+            res.push_back(arr[i].second);
+        }
         return res;
     }
 };
 
-// min heap 
+/*
+Using a min heap - storing pair of {freq, value} 
+Time complexity : O(nlogk) n - length of array, k - number of top frequent elements 
+Space complexity : O(n + k) 
+*/
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
