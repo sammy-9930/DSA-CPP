@@ -7,11 +7,11 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         int res = 0;
-        unordered_set<int> store(nums.begin(), nums.end());
+        unordered_set<int> seen(nums.begin(), nums.end());
 
         for(int num : nums){
-            int streak = 0, curr = num;
-            while (store.find(curr) != store.end()){
+            int streak = 1, curr = num;
+            while (seen.find(curr + 1) != seen.end()){
                 streak++;
                 curr++;
             }
@@ -29,24 +29,25 @@ Space complexity: O(1) or O(n) depending on sorting algorithm
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
         sort(nums.begin(), nums.end());
-        int curr = nums[0], streak = 0, i = 0, res = 0;
-        while (i < nums.size()){
-            // start of new sequence
-            if (curr != nums[i]){
-                curr = nums[i];
-                streak = 0;
+        int lastElement = INT_MIN;
+        int longest = 0;
+        int curCount = 0;
+        for(int i = 0; i < nums.size(); i++){
+            if(lastElement == nums[i]-1){
+                curCount++;
+                lastElement = nums[i];
             }
-            // check for duplicates 
-            while (i < nums.size() && curr == nums[i]){
-                i++;
+            else if(lastElement == nums[i]){
+                continue;
             }
-            streak++;
-            curr++;
-            res = max(res, streak);
+            else if(lastElement != nums[i]-1){
+                curCount = 1;
+                lastElement = nums[i];
+            }
+            longest = max(longest, curCount);
         }
-        return res;
+        return longest;
     }
 };
 
@@ -58,18 +59,20 @@ Space complexity: O(n)
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        unordered_set<int> numSet(nums.begin(), nums.end());
+        if(nums.size() == 0) return 0;
         int longest = 0;
+        unordered_set<int> store(nums.begin(), nums.end());
 
-        for(int num: numSet){
-            // check if num-1 doesn't exist
-            if (numSet.find(num-1) == numSet.end()){
-                int length = 1;
-                while (numSet.find(num+length) != numSet.end()){
-                    length++;
+        for(int number : store){
+            // when number is not found, enter if condition
+            if(store.find(number-1) == store.end()){
+                int curCount = 1;
+                while(store.find(number+1) != store.end()){
+                    curCount++;
+                    number++;
                 }
-                longest = max(longest, length);
-            } 
+                longest = max(longest, curCount);
+            }
         }
         return longest;
     }
