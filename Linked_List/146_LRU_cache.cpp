@@ -71,3 +71,47 @@ public:
         }
     }
 };
+
+/*
+Using built-in datastructure 
+Time complexity : O(1) for each get() and put()
+Space complexity : O(n) 
+*/
+class LRUCache {
+private:
+    int capacity;
+    list<int> dll;
+    unordered_map<int, pair<int, list<int>::iterator>> map;
+public:
+    LRUCache(int capacity) {
+        this->capacity = capacity;
+    }
+    
+    int get(int key) {
+        if(map.find(key) != map.end()){
+            int value = map[key].first;
+            dll.erase(map[key].second);
+            dll.push_front(key);
+            map[key].second = dll.begin();
+            return value;
+        }
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        if(map.find(key) != map.end()){
+            dll.erase(map[key].second);
+            map.erase(key);
+        }
+
+        dll.push_front(key);
+        map[key] = {value, dll.begin()};
+
+
+        if(map.size() > capacity){
+            int key = dll.back();
+            dll.pop_back();
+            map.erase(key);
+        }
+    }
+};
