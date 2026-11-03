@@ -1,4 +1,46 @@
 /*
+Brute force solution 
+Time complexity : O(n)
+Space complexity : O(n)
+*/
+class LRUCache {
+private:
+    vector<pair<int,int>> cache;
+    int capacity;
+public:
+    LRUCache(int capacity) {
+        this->capacity = capacity;
+    }
+    
+    int get(int key) {
+        for(int i=0; i < cache.size(); i++){
+            if(cache[i].first == key){
+                pair<int, int> tmp = cache[i];
+                cache.erase(cache.begin() + i);
+                cache.push_back(tmp);
+                return tmp.second;
+            }
+        }
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        for(int i = 0; i < cache.size(); i++){
+            if(cache[i].first == key){
+                cache.erase(cache.begin() + i);
+                break;
+            }
+        }
+
+        cache.push_back({key, value});
+
+        if(cache.size() > capacity){
+            cache.erase(cache.begin());
+        }
+    }
+};
+
+/*
 Using doubly linked list 
 Time complexity : O(1) for each get() and put()
 Space complexity : O(n) 
