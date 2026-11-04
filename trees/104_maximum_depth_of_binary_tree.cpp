@@ -10,7 +10,11 @@
  * };
  */
 
-/* solution 1: Recursive */
+/*
+DFS 
+Time complexity : O(n)
+Space complexity : O(n)
+*/
 class Solution {
 public:
     int helper(TreeNode* root){
@@ -23,18 +27,11 @@ public:
     }
 };
 
-/* solution 2: iterative */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+/* 
+BFS
+Time complexity: O(n)
+Space complexity: O(n)
+*/
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -44,6 +41,7 @@ public:
         int depth = 0;
         while (!q.empty()){
             int s = q.size();
+            depth++;
             for(int i = 0; i < s; i++){
                 TreeNode* frontNode = q.front();
                 q.pop();
@@ -52,7 +50,6 @@ public:
                 if (frontNode->right)
                     q.push(frontNode->right);
             }
-            depth += 1;
         }
         return depth;
     }
