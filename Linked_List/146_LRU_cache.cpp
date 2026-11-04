@@ -98,7 +98,9 @@ public:
     
     void put(int key, int value) {
         if(cache.find(key) != cache.end()){
-            remove(cache[key]);
+            Node* tmp = cache[key];
+            remove(tmp);
+            delete tmp;
         }
 
         Node* newNode = new Node(key, value);
