@@ -38,8 +38,8 @@ public:
     void helper(TreeNode* root){
         if (root == nullptr) return;
         swap(root->left, root->right);
-        invertTree(root->left);
-        invertTree(root->right);
+        helper(root->left);
+        helper(root->right);
     }
     TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) return root;
