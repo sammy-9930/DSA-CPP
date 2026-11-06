@@ -50,3 +50,55 @@ public:
         return res; 
     }
 };
+
+/*
+Row wise traversal 
+Time complexity : O(n! . n)
+Space complexity : O(n) 
+*/
+class Solution {
+public:
+    bool isValid(int row, int col, vector<string>& board, int n){
+        for(int r = row; r >= 0; r--){
+            if(board[r][col] == 'Q')
+                return false;
+        }
+
+        for(int r = row, c = col; r >= 0 && c >= 0; r--, c--){
+            if(board[r][c] == 'Q')
+                return false;
+        }
+
+        for(int r = row, c = col; r >= 0 && c < n ; r--, c++){
+            if(board[r][c] == 'Q')
+                return false;
+        }
+        return true;
+    }
+
+    void helper(int row, int n, vector<string>& board, vector<vector<string>>& res){
+        if(row == n){
+            res.push_back(board);
+            return;
+        }
+
+        for(int col = 0; col < n; col++){
+            if(isValid(row, col, board, n)){
+                board[row][col] = 'Q';
+                helper(row+1, n, board, res);
+                board[row][col] = '.';
+            }
+        }
+    }
+
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> res;
+        vector<string> board(n);
+        string s(n, '.');
+        for(int i = 0; i < n; i++){
+            board[i] = s;
+        }
+        helper(0, n, board, res);
+        return res;
+    }
+};
