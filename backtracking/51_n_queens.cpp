@@ -1,3 +1,8 @@
+/*
+Column wise traversal 
+Time complexity : O(n! . n)
+Space complexity : O(n) 
+*/
 class Solution {
 public:
     bool isValid(int row, int col, vector<string>& board, int n){
