@@ -18,6 +18,7 @@ public:
         if(root->left == nullptr && root->right == nullptr && root->val == targetSum){
             cur.push_back(root->val);
             res.push_back(cur);
+            return;
         }
         
         cur.push_back(root->val);
