@@ -1,7 +1,7 @@
 /*
 Brute force solution 
-Time : O(n + n) 
-Space : O(1)
+Time : O(n) 
+Space : O(n)
 */
 class Solution {
 public:
@@ -25,40 +25,6 @@ public:
 
         delete nodes[removeIdx];
 
-        return head;
-    }
-};
-
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* tmp = head;
-        int totalCount = 0;
-        while(tmp != nullptr){
-            tmp = tmp->next;
-            totalCount++;
-        }
-
-        int removeIdx = totalCount - n;
-
-        if(removeIdx == 0){
-            ListNode* dummy = head;
-            head = head->next;
-            delete dummy;
-            return head;
-        }
-
-        tmp = head;
-
-        for(int i = 0; i < removeIdx; i++){
-            if(i == removeIdx - 1){
-                ListNode* dummy = tmp->next;
-                tmp->next = tmp->next->next;
-                delete dummy;
-                break;
-            }
-            tmp = tmp->next;
-        }
         return head;
     }
 };
@@ -90,6 +56,42 @@ public:
         ListNode* dummy = slow->next;
         slow->next = slow->next->next;
         delete dummy;
+        return head;
+    }
+};
+
+
+// Another possible brute force 
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* tmp = head;
+        int totalCount = 0;
+        while(tmp != nullptr){
+            tmp = tmp->next;
+            totalCount++;
+        }
+
+        int removeIdx = totalCount - n;
+
+        if(removeIdx == 0){
+            ListNode* dummy = head;
+            head = head->next;
+            delete dummy;
+            return head;
+        }
+
+        tmp = head;
+
+        for(int i = 0; i < removeIdx; i++){
+            if(i == removeIdx - 1){
+                ListNode* dummy = tmp->next;
+                tmp->next = tmp->next->next;
+                delete dummy;
+                break;
+            }
+            tmp = tmp->next;
+        }
         return head;
     }
 };
