@@ -6,6 +6,32 @@ Space : O(1)
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        vector<ListNode*> nodes;
+        ListNode* tmp = head;
+        while(tmp != nullptr){
+            nodes.push_back(tmp);
+            tmp = tmp->next;
+        }
+
+
+        int removeIdx = nodes.size() - n;
+
+        if(removeIdx == 0){
+            head = head->next;
+        }
+        else{
+            nodes[removeIdx - 1]->next = nodes[removeIdx]->next;
+        }
+
+        delete nodes[removeIdx];
+
+        return head;
+    }
+};
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* tmp = head;
         int totalCount = 0;
         while(tmp != nullptr){
