@@ -27,36 +27,26 @@ public:
 /*
 sliding Window Approach
 time : O(N)
-space : O(N)
+space : O(1) - max size of unordered_map = 26
 */
 
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int l = 0; 
-        int maxLen = 0;
         unordered_map<char, int> count;
-        int windowLen = 0;
-        int maxFreq = 0;
+        int maxFreq;
+        int longest = 0;
+        int l = 0;
         for(int r = 0; r < s.size(); r++){
-            // add char in map 
-            count[s[r]] += 1;
-            // WindowLen - count[max_freq] <= k - valid 
+            count[s[r]]++;
             maxFreq = max(maxFreq, count[s[r]]);
-            windowLen = r - l + 1;
-            // consider as a possible answer 
-            if (windowLen - maxFreq <= k){
-                maxLen = max(maxLen, windowLen);
-            }
-            // modify our window 
-            else{
-                count[s[l]] -= 1;
-                l += 1;
-            }
+
+            if((r - l + 1) - maxFreq > k){
+                count[s[l]]--;
+                l++;
+            } 
+            longest = max(longest, r - l + 1);
         }
-        return maxLen;
+        return longest;
     }
 };
-
-
-
