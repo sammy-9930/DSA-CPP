@@ -1,4 +1,5 @@
 /*
+Brute force
 Time complexity - O(n) + O(n) = O(2n) ~ O(n) 
 Space complexity - O(1)
 */
@@ -28,3 +29,31 @@ public:
         }
     }
 };
+
+/*
+Optimized approach
+Time complexity - O(n) 
+Space complexity - O(1)
+*/
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int l = 0;
+        int r = nums.size() - 1;
+        int idx = 0;
+        while(idx <= r){
+            if(nums[idx] == 0){
+                swap(nums[idx], nums[l]);
+                l++;
+                idx++;
+            }
+            else if (nums[idx] == 2){
+                swap(nums[idx], nums[r]);
+                r--;
+            }
+            else{
+                idx++;
+            }
+        }
+    }
+};  
