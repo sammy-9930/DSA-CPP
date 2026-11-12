@@ -1,3 +1,7 @@
+/*
+Time : O(2^n)
+Space : O(n)
+*/
 class Solution {
 public:
     void helper(int n, vector<string>& res, string cur, int n_open, int n_close){
