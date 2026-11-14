@@ -1,4 +1,48 @@
 /*
+Brute force approach
+m - length of string s, n - length of string t 
+Time complexity : O(n + m^2 . k)
+Space complexity : O(k)  - max no of entries into map is 26
+*/
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        if(t.length() > s.length())
+            return "";
+        
+        unordered_map<char, int> tMap;
+        for(char c: t){
+            tMap[c]++;
+        }
+
+        int minLen = INT_MAX;
+        int startIdx = 0;
+
+        for(int i = 0; i < s.length(); i++){
+            unordered_map<char, int> sMap;
+            for(int j = i; j < s.length(); j++){
+                sMap[s[j]]++;
+
+                bool valid = true;
+                for(auto itr : tMap){
+                    if(sMap[itr.first] < tMap[itr.first]){
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if(valid && ((j-i+1) < minLen)){
+                    minLen = j - i + 1;
+                    startIdx = i;
+                }
+            }
+        }
+        return minLen == INT_MAX ? "" : s.substr(startIdx, minLen);
+    }
+};
+
+
+/*
 Sliding window
 Time complexity : O(m + n) 
 Space complexity : O(n) 
