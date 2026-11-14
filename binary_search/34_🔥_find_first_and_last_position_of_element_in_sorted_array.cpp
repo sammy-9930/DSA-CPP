@@ -40,3 +40,40 @@ public:
         return {first, last};   
     }
 };
+
+/*
+Optimized solution
+*/
+class Solution {
+public:
+    int helper(vector<int>& nums, int& target, bool flag){
+        int low = 0, high = nums.size()-1;
+        int res = -1;
+
+        while (low <= high){
+            int mid = low + (high - low)/2;
+            if(nums[mid] > target){
+                high = mid - 1;
+            }
+            else if (nums[mid] < target){
+                low = mid + 1;
+            }
+            else{
+                if(flag){
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
+                }
+                res = mid;
+            }
+        }
+        return res;
+    }
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int first = helper(nums, target, true);
+        int last = helper(nums, target, false);
+        return {first, last};
+    }
+};
