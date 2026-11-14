@@ -7,7 +7,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         for(int l = 0; l < numbers.size(); l++){
-            for(int r = 0; r < numbers.size(); r++){
+            for(int r = l+1; r < numbers.size(); r++){
                 if(numbers[l] + numbers[r] == target){
                     return {l+1, r+1};
                 }
