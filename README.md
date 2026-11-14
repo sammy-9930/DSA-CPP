@@ -32,5 +32,4 @@
 ## Binary Search
 
 - [704. Binary Search](https://leetcode.com/problems/binary-search/)
-- [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
-- [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
+- [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/)
