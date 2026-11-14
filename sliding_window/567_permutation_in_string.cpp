@@ -7,6 +7,9 @@ n - size of s2,  m - size of s1
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
+        if(s1.length() > s2.length())
+            return false;
+        
         vector<int> s1Count(26, 0);
         for(char c : s1){
             s1Count[c - 'a']++;
@@ -40,26 +43,30 @@ space: o(1) atmost 26 char
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
+        if(s1.length() > s2.length())
+            return false;
+
         vector<int> s1Count(26, 0);
         vector<int> s2Count(26, 0);
 
-        int k = s1.size();
-
-        for(char c : s1){
-            s1Count[c - 'a'] += 1;
+        for(char c: s1){
+            s1Count[c - 'a']++;
         }
 
+        int k = s1.length();
+
         int l = 0;
-        for(int r = l; r < s2.size(); r++){
-            s2Count[s2[r] - 'a'] += 1;
+        for(int r = 0; r < s2.length(); r++){
+            s2Count[s2[r] - 'a']++;
 
             if((r - l + 1) > k){
-                s2Count[s2[l] - 'a'] -= 1;
+                s2Count[s2[l] - 'a']--;
                 l++;
             }
 
-            if((r - l + 1) == k && s1Count == s2Count)
+            if((r - l + 1) == k && s1Count == s2Count){
                 return true;
+            }
         }
         return false;
     }
