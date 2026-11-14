@@ -24,24 +24,20 @@ Space complexity : O(1)
 */
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        vector<int> res;
-        int curMax = nums[0];
-
-        int l = 0;
-        for(int r = l; r < nums.size(); r++){
-            if((r - l + 1) <= k){
-                curMax = max(curMax, nums[r]);
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int l = 0, r = numbers.size()-1;
+        while (l < r){
+            int sum = numbers[l] + numbers[r];
+            if(sum == target){
+                return {l+1, r+1};
             }
-
-            if((r - l + 1) == k){
-                res.push_back(curMax);
-                if(curMax == nums[l]){
-                    curMax = 0;
-                }
-                l++;    
+            else if (sum > target){
+                r--;
+            }
+            else{
+                l++;
             }
         }
-        return res;
+        return {};
     }
 };
