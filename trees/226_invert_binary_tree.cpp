@@ -10,6 +10,11 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+/*
+Breadth first search
+Time complexity : O(n)
+Space complexity : O(n)
+*/
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
@@ -32,7 +37,11 @@ public:
     }
 };
 
-// DFS 
+/*
+DFS 
+Time complexity : O(n) 
+Space complexity : O(n) for recursive stack
+*/
 class Solution {
 public:
     void helper(TreeNode* root){
@@ -43,8 +52,7 @@ public:
     }
     TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) return root;
-        TreeNode* tmp = root;
-        helper(tmp);
+        helper(root);
         return root;
     }
 };
